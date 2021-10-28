@@ -1,0 +1,1 @@
+add_executable(simple_jpeg main.cc huffman_encoding.cc)

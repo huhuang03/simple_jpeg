@@ -1,0 +1,7 @@
+When learn the [[https://www.coursera.org/learn/image-processing/home/week/2][image-processing]]
+
+I think if I can write an simple jpeg processing, so I can do some good understand the class.
+
+So do it.
+
+It's just a practice project.
