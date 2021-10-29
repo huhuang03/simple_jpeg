@@ -12,6 +12,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 include(GoogleTest)
 
+# hwo can we link the lib?
 # how to do the var args, and you should update the live template.
 function(addTest name srcs)
     add_executable(
@@ -22,6 +23,7 @@ function(addTest name srcs)
     target_link_libraries(
             ${name}
             gtest_main
+            simple_jpeg_lib
     )
 
     gtest_discover_tests(${name})

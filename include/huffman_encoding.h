@@ -7,6 +7,7 @@
 
 // ok, define the interface.
 #include <vector>
+#include <iostream>
 
 /**
  * What can I do if the leading is 0??
@@ -21,12 +22,13 @@
  * This is just a simple encoding, so we do the simple way.
  */
 class HuffmanEncoding {
+    // big encoding.
     std::vector<unsigned char> value;
     // big encoding, or little encoding?
 //    unsigned char* value;
     // len is the bit len, not byte len
 //    int len;
-    // fuck, we still need provider the tostring
+    // f**, we still need provider the tostring
     friend std::ostream & operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding);
 };
 

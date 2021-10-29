@@ -15,7 +15,7 @@ TEST(Hello, helloTest) {
     // how can I define with size?
     const auto *encoding = static_cast<const HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));
 
-    auto *pTimes = &times;
+    auto *pTimes = times;
     auto *pEncoding = encoding;
     // ok, now we need to see the encoding.
     for (int i = 0; i < timesLen; i++, pTimes++, pEncoding++) {
