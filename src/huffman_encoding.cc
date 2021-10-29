@@ -50,3 +50,9 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output) {
 //        }
     }
 }
+
+// f**, what we can do?
+std::ostream &operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding) {
+//    for ()
+    return os;
+}
