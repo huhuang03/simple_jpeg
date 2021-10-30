@@ -10,7 +10,7 @@
 
 
 TEST(Hello, helloTest) {
-    const unsigned int times[] = {1, 5, 2, 5, 10, 93, 1, 10};
+    const unsigned int times[] = {1, 5, 3, 5, 11, 93, 2, 10};
     const unsigned int timesLen = sizeof(times) / sizeof(times[0]);
     // how can I define with size?
     auto *encoding = static_cast<HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));

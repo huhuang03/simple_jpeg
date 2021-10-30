@@ -40,19 +40,29 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, Huffma
 
     Node *root = nullptr;
 
-    while (!nodes.empty()) {
-        auto min = std::begin(nodes);
+    while (nodes.size() > 2) {
+        auto min1 = std::begin(nodes);
+        auto min2 = min1 + 1;
         for (auto it = std::begin(nodes); it != std::end(nodes); it++) {
-            if (min->val < it->val) {
-                min = it;
+            auto out = it;
+            if (min1->val > it->val) {
+                min1 = it;
+                out = min1;
+            }
+
+            if (out != min1 && out->val < min2->val) {
+                min2 = out;
             }
         }
 
-        nodes.erase(min);
-//        std::remove(nodes.begin(), nodes.end(), min);
-
-        std::cout << "min: " << min->val << std::endl;
-        // ok, remove from nodes.
+        std::cout << "min1: " << min1->val << ", min2: " << min2->val << std::endl;
+        nodes.erase(min1);
+//
+//        if (root == nullptr) {
+//            root = new Node(min->val, std::find(nodes.begin(), nodes.end(), min) - nodes.begin());
+//        } else {
+//            // create the new root.
+//        }
     }
 }
 
