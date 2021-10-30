@@ -23,7 +23,7 @@ public:
     : val(val), index(index), left(left), right(right) {};
 };
 
-void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output) {
+void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, HuffmanStartsWith startsWith) {
     // ok, let's do the logic
     // How can we present the codes, and can delete from origin code?
     // A set is a good struct.

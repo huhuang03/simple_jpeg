@@ -15,7 +15,7 @@ TEST(Hello, helloTest) {
     // how can I define with size?
     auto *encoding = static_cast<HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));
 
-    huffmanEncode((int *) times, timesLen, encoding);
+    huffmanEncode((unsigned int *) times, timesLen, encoding);
 
     auto *pTimes = times;
     auto *pEncoding = encoding;

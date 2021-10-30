@@ -55,6 +55,6 @@ enum HuffmanStartsWith {
  *
  * Ok, let's do the coding.
  */
-void huffmanEncode(int *codes, int len, HuffmanEncoding *output, HuffmanStartsWith startsWith = HuffmanStartsWith::ONE);
+void huffmanEncode(unsigned int *codes, int len, HuffmanEncoding *output, HuffmanStartsWith startsWith = HuffmanStartsWith::ONE);
 
 #endif //SIMPLE_JPEG_HUMAN_ENCODING_H
