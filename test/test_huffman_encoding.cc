@@ -17,7 +17,7 @@ TEST(Hello, helloTest) {
 
     huffmanEncode((int *) times, timesLen, encoding);
 
-    auto *pTimes = &times;
+    auto *pTimes = times;
     auto *pEncoding = encoding;
     // ok, now we need to see the encoding.
     for (int i = 0; i < timesLen; i++, pTimes++, pEncoding++) {

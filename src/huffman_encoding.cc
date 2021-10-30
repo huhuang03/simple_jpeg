@@ -54,12 +54,12 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output) {
         std::cout << "min: " << min->val << std::endl;
         // ok, remove from nodes.
     }
-
-
 }
 
-//// f**, what we can do?
-//std::ostream &operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding) {
-////    for ()
-//    return os;
-//}
+// f**, what we can do?
+std::ostream &operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding) {
+    for (unsigned char i : huffmanEncoding.value) {
+        os << i;
+    }
+    return os;
+}
