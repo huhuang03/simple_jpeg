@@ -13,12 +13,14 @@ TEST(Hello, helloTest) {
     const unsigned int times[] = {1, 5, 2, 5, 10, 93, 1, 10};
     const unsigned int timesLen = sizeof(times) / sizeof(times[0]);
     // how can I define with size?
-    const auto *encoding = static_cast<const HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));
+    auto *encoding = static_cast<HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));
+
+    huffmanEncode((int *) times, timesLen, encoding);
 
     auto *pTimes = &times;
     auto *pEncoding = encoding;
     // ok, now we need to see the encoding.
     for (int i = 0; i < timesLen; i++, pTimes++, pEncoding++) {
-        std::cout << *pTimes << ", encoding: " << *pEncoding << std::endl;
+//        std::cout << *pTimes << ", encoding: " << *pEncoding << std::endl;
     }
 }

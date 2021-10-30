@@ -22,6 +22,7 @@ function(addTest name srcs)
     target_link_libraries(
             ${name}
             gtest_main
+            simple_jpg_lib
     )
 
     gtest_discover_tests(${name})

@@ -7,6 +7,7 @@
 
 // ok, define the interface.
 #include <vector>
+#include <iostream>
 
 /**
  * What can I do if the leading is 0??
@@ -27,7 +28,7 @@ class HuffmanEncoding {
     // len is the bit len, not byte len
 //    int len;
     // fuck, we still need provider the tostring
-    friend std::ostream & operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding);
+//    friend std::ostream & operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding);
 };
 
 enum HuffmanStartsWith {
