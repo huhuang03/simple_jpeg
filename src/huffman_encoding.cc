@@ -19,27 +19,23 @@ public:
     Node *right;
 
 public:
-    Node(int val, int index = -1, Node *left = nullptr, Node* = nullptr)
+    Node(int val, int index = -1, Node *left = nullptr, Node* right = nullptr)
     : val(val), index(index), left(left), right(right) {};
 };
 
 static void encode(std::vector<unsigned char> level, HuffmanEncoding *output, Node* tree) {
     if (tree == nullptr) return;
-    if (tree->index > 0) {
-        // why throw at here?
-        std::cout << "size: " << (output + tree->index)->value.size() << std::endl;
-        (output + tree->index)->value.push_back(0);
-//        for (auto it = level.begin(); it != level.end(); it++) {
-//            (output + tree->index)->value.push_back(*it);
-//        }
-//        (output + tree->index)->value.insert((output + tree->index)->value.end(), level.begin(), level.end());
+    if (tree->index >= 0) {
+        for (unsigned char & it : level) {
+            (output + tree->index)->value.push_back(it);
+        }
     } else {
         std::vector<unsigned char> leftLevel = level;
         leftLevel.push_back(0);
         encode(leftLevel, output, tree->left);
 
         std::vector<unsigned char> rightLevel = level;
-        rightLevel.push_back(0);
+        rightLevel.push_back(1);
         encode(rightLevel, output, tree->right);
     }
 }
@@ -63,7 +59,7 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, Huffma
     // we need care about the release.
     Node *root = nullptr;
 
-    while (nodes.size() > 2) {
+    while (nodes.size() > 1) {
         auto min1 = std::begin(nodes);
         for (auto it = std::begin(nodes); it != std::end(nodes); it++) {
             if (min1->val > it->val) {
@@ -85,9 +81,7 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, Huffma
         Node* nodeRight = new Node(min2->val, min2->index, min2->left, min2->right);
         nodes.erase(min2);
 
-        std::cout << "min1: " << nodeLeft->val << ", min2: " << nodeRight->val << std::endl;
-
-
+//        std::cout << "min1: " << nodeLeft->val << ", min2: " << nodeRight->val << std::endl;
         // looks we can't erase after change the nodes.
 
         // ok, how to do next?
@@ -97,15 +91,16 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, Huffma
         nodes.push_back(*newRoot);
         root = newRoot;
     }
-    std::cout << "root: " << root->val << std::endl;
+//    std::cout << "root: " << root->val << std::endl;
     // ok, now we encode.
     encode(std::vector<unsigned char>(), output, root);
 }
 
 // f**, what we can do?
 std::ostream &operator<<(std::ostream &os, const HuffmanEncoding &huffmanEncoding) {
+    std::cout << "len: " << huffmanEncoding.value.size() << ", ";
     for (unsigned char i : huffmanEncoding.value) {
-        os << i;
+        os << (int)i;
     }
     return os;
 }

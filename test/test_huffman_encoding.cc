@@ -25,6 +25,6 @@ TEST(Hello, helloTest) {
     auto *pEncoding = encoding;
     // ok, now we need to see the encoding.
     for (int i = 0; i < timesLen; i++, pTimes++, pEncoding++) {
-//        std::cout << *pTimes << ", encoding: " << *pEncoding << std::endl;
+        std::cout << *pTimes << ", encoding: " << *pEncoding << std::endl;
     }
 }
