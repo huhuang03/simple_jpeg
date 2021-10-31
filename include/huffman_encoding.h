@@ -22,6 +22,7 @@
  * This is just a simple encoding, so we do the simple way.
  */
 class HuffmanEncoding {
+public:
     // big encoding.
     std::vector<unsigned char> value;
     // big encoding, or little encoding?

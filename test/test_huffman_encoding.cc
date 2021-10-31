@@ -13,7 +13,11 @@ TEST(Hello, helloTest) {
     const unsigned int times[] = {1, 5, 3, 5, 11, 93, 2, 10};
     const unsigned int timesLen = sizeof(times) / sizeof(times[0]);
     // how can I define with size?
-    auto *encoding = static_cast<HuffmanEncoding *>(malloc(sizeof(HuffmanEncoding) * timesLen));
+    std::cout << "timesLen: " << timesLen << std::endl;
+    auto *encoding = new HuffmanEncoding[timesLen];
+    for (int i = 0; i < timesLen; i++) {
+        encoding[i] = HuffmanEncoding();
+    }
 
     huffmanEncode((unsigned int *) times, timesLen, encoding);
 
