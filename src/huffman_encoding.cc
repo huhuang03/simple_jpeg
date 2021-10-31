@@ -21,6 +21,16 @@ public:
 public:
     Node(int val, int index = -1, Node *left = nullptr, Node* right = nullptr)
     : val(val), index(index), left(left), right(right) {};
+
+    void freeEntireTree() {
+        if (this->left != nullptr) {
+            this->left->freeEntireTree();
+        }
+        if (this->right != nullptr) {
+            this->right->freeEntireTree();
+        }
+        delete this;
+    }
 };
 
 static void encode(std::vector<unsigned char> level, HuffmanEncoding *output, Node* tree) {
@@ -45,55 +55,42 @@ void huffmanEncode(unsigned int *times, int len, HuffmanEncoding *output, Huffma
     // How can we present the codes, and can delete from origin code?
     // A set is a good struct.
 
-    std::vector<Node> nodes;
+    std::vector<Node*> nodes;
     unsigned int *pItems = times;
     for (int i = 0; i < len; i++, pItems++) {
-        // push and (pop and assign) is ok, but we can't present the tree in stack.
-        // we need a map, but we need free the tree when we done.
-        // Ok, I don't know emplace_back for now.
-        // If we don't new, will be deleted by the pop?
-        nodes.emplace_back(*pItems, i);
+        nodes.push_back(new Node(*pItems, i));
     }
 
-    // TODO how to struct the node?
-    // we need care about the release.
     Node *root = nullptr;
 
     while (nodes.size() > 1) {
         auto min1 = std::begin(nodes);
         for (auto it = std::begin(nodes); it != std::end(nodes); it++) {
-            if (min1->val > it->val) {
+            if ((*min1)->val > (*it)->val) {
                 min1 = it;
             }
         }
 
-        Node* nodeLeft = new Node(min1->val, min1->index, min1->left, min1->right);
+        Node* nodeLeft = *min1;
         nodes.erase(min1);
 
 
         auto min2 = std::begin(nodes);
         for (auto it = std::begin(nodes); it != std::end(nodes); it++) {
-            if (min2->val > it->val) {
+            if ((*min2)->val > (*it)->val) {
                 min2 = it;
             }
         }
 
-        Node* nodeRight = new Node(min2->val, min2->index, min2->left, min2->right);
+        Node* nodeRight = *min2;
         nodes.erase(min2);
 
-//        std::cout << "min1: " << nodeLeft->val << ", min2: " << nodeRight->val << std::endl;
-        // looks we can't erase after change the nodes.
-
-        // ok, how to do next?
-        // how to do the min1, and min2?
-        // For now, I discard the free issue, can I do it?
         Node* newRoot = new Node(nodeLeft->val + nodeRight->val, -1, nodeLeft, nodeRight);
-        nodes.push_back(*newRoot);
+        nodes.push_back(newRoot);
         root = newRoot;
     }
-//    std::cout << "root: " << root->val << std::endl;
-    // ok, now we encode.
     encode(std::vector<unsigned char>(), output, root);
+    root->freeEntireTree();
 }
 
 // f**, what we can do?
